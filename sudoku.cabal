@@ -2,8 +2,8 @@ name:                sudoku
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/githubuser/sudoku#readme
-license:             BSD3
+homepage:            https://github.com/somnus0208/sudoku#readme
+license:             Apache
 license-file:        LICENSE
 build-type:          Simple
 extra-source-files:  README.md
@@ -48,4 +48,4 @@ test-suite sdks-test
 
 source-repository head
   type:     git
-  location: https://github.com/githubuser/sudoku
+  location: https://github.com/somnus0208/sudoku
