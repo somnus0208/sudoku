@@ -1,10 +1,10 @@
 name:                sudoku
-version:             0.1.0.0
+version:             0.0.3.0
 github:              "toyoh3232/sudoku"
 license:             Apache
 author:              "Toyoharu Han"
-maintainer:          "toyoh3232a@gmail.com"
-copyright:           "2018 Toyoharu Han"
+maintainer:          "toyoh3232@gmail.com"
+copyright:           "2021 Toyoharu Han"
 
 extra-source-files:
 - README.md
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/somnus0208/sudoku#readme>
+description:         Please see the README on GitHub at <https://github.com/toyoh3232/sudoku#readme>
 
 dependencies:
 - base >= 4.7 && < 5
