@@ -1,4 +1,4 @@
-module Propositional.MsatParser where
+module Propositional.MSatParser where
 
 import Propositional.Core
 import Text.ParserCombinators.Parsec

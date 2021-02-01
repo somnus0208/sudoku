@@ -1,10 +1,10 @@
 name:                sudoku
 version:             0.1.0.0
-github:              "somnus0208/sudoku"
+github:              "toyoh3232/sudoku"
 license:             Apache
-author:              "Chenyang Pan"
-maintainer:          "chenyangp@acm.org"
-copyright:           "2018 Chenyang Pan"
+author:              "Toyoharu Han"
+maintainer:          "toyoh3232a@gmail.com"
+copyright:           "2018 Toyoharu Han"
 
 extra-source-files:
 - README.md
@@ -33,7 +33,7 @@ library:
   source-dirs: src
 
 executables:
-  sdks:
+  sudoku:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -44,7 +44,7 @@ executables:
     - sudoku
 
 tests:
-  sdks-test:
+  sudoku-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:

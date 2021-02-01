@@ -7,7 +7,7 @@ import Debug.Trace
 import Data.List
 
 import Propositional.Core
-import Propositional.MsatParser
+import Propositional.MSatParser
 
 getStdOut :: String -> IO (ProcessHandle)
 getStdOut cmd = do
@@ -15,7 +15,7 @@ getStdOut cmd = do
     return ph
 
 
-runMSat :: (Substition,String) -> IO (String)
+runMSat :: (Substitution,String) -> IO (String)
 runMSat (subs,cnf) = do
     fp <- writeSystemTempFile "dimacs.in" cnf
     fp_out <- emptySystemTempFile "dimacs.out"
@@ -24,4 +24,4 @@ runMSat (subs,cnf) = do
     s <- readFromFile fp_out
     let   subs_new = [(v_new,Variable v)|(v,Variable v_new)<-subs]
     case s of Nothing -> return "Unsatisfiable"
-              Just m  -> return (intercalate "\n" [show var |(var_new, val) <- m,Just var <- [lookup var_new subs_new],val==True])
+              Just m  -> return (intercalate "" [show var ++ "\n" |(var_new, val) <- m,Just var <- [lookup var_new subs_new],val==True])

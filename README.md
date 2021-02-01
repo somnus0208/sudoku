@@ -9,19 +9,19 @@ Please install the build tool **Stack**: (https://docs.haskellstack.org) and mak
 ```bash
 ~.../sudoku$ stack build
 ~.../sudoku$ stack install
-~.../sudoku$ sdks -h
+~.../sudoku$ sudoku -h
 ```
 
 #### What is designed
 
 I would like to talk about some important modules which build the CNF.
 
- * **Proposition.Core** ---- *data structures and basic operation on fomulas*
+ * **Proposition.Core** ---- *data structures and basic operation on formulas*
  * **Proposition.NormalForm** ---- *NNF, CNF and DIMACS transformation*
- * **Proposition.Utils**  ---- *conversion of polish notation to infix noation*
+ * **Proposition.Utils**  ---- *conversion of polish notation to infix notation*
  * **Proposition.Parser** ---- *ascii form formula parser*
- * **proposition.MSatPort** ----  *callee for minisat as child process* 
- * **proposition.MsatPaeser** ---- *output from minisat parser*
+ * **Proposition.MSatPort** ----  *callee for minisat as child process* 
+ * **Proposition.MsatParser** ---- *output from minisat parser*
 
 The overall constraints generations is in the file Solver.hs.
 We have to get five parts of constraints, as a example, let's take a look at row constraints.
@@ -63,22 +63,10 @@ which means a 4x4 sudoku problem and 0 means this block is to be filled.
 
 The input file is 4_1.txt and the result is: 
 ```test
-(r1,c1):4
-(r1,c2):1
-(r1,c3):3
-(r1,c4):2
-(r2,c1):2
-(r2,c2):3
-(r2,c3):4
-(r2,c4):1
-(r3,c1):1
-(r3,c2):4
-(r3,c3):2
-(r3,c4):3
-(r4,c1):3
-(r4,c2):2
-(r4,c3):1
-(r4,c4):4
+4 1 3 2
+2 3 4 1
+1 4 2 3
+3 2 1 4
 ```
 which (r1,c1) means row 1 column 1.
 
@@ -86,91 +74,18 @@ which (r1,c1) means row 1 column 1.
 The input file is 9_1.txt and the result is:
 
 ```text
-(r1,c1):3
-(r1,c2):9
-(r1,c3):7
-(r1,c4):1
-(r1,c5):8
-(r1,c6):4
-(r1,c7):5
-(r1,c8):2
-(r1,c9):6
-(r2,c1):4
-(r2,c2):8
-(r2,c3):1
-(r2,c4):6
-(r2,c5):2
-(r2,c6):5
-(r2,c7):7
-(r2,c8):9
-(r2,c9):3
-(r3,c1):2
-(r3,c2):5
-(r3,c3):6
-(r3,c4):9
-(r3,c5):7
-(r3,c6):3
-(r3,c7):8
-(r3,c8):4
-(r3,c9):1
-(r4,c1):6
-(r4,c2):7
-(r4,c3):4
-(r4,c4):5
-(r4,c5):3
-(r4,c6):2
-(r4,c7):9
-(r4,c8):1
-(r4,c9):8
-(r5,c1):1
-(r5,c2):2
-(r5,c3):9
-(r5,c4):8
-(r5,c5):4
-(r5,c6):6
-(r5,c7):3
-(r5,c8):5
-(r5,c9):7
-(r6,c1):8
-(r6,c2):3
-(r6,c3):5
-(r6,c4):7
-(r6,c5):9
-(r6,c6):1
-(r6,c7):2
-(r6,c8):6
-(r6,c9):4
-(r7,c1):5
-(r7,c2):4
-(r7,c3):2
-(r7,c4):3
-(r7,c5):1
-(r7,c6):8
-(r7,c7):6
-(r7,c8):7
-(r7,c9):9
-(r8,c1):7
-(r8,c2):6
-(r8,c3):3
-(r8,c4):4
-(r8,c5):5
-(r8,c6):9
-(r8,c7):1
-(r8,c8):8
-(r8,c9):2
-(r9,c1):9
-(r9,c2):1
-(r9,c3):8
-(r9,c4):2
-(r9,c5):6
-(r9,c6):7
-(r9,c7):4
-(r9,c8):3
-(r9,c9):5
+3 9 7 1 8 4 5 2 6
+4 8 1 6 2 5 7 9 3
+2 5 6 9 7 3 8 4 1
+6 7 4 5 3 2 9 1 8
+1 2 9 8 4 6 3 5 7
+8 3 5 7 9 1 2 6 4
+5 4 2 3 1 8 6 7 9
+7 6 3 4 5 9 1 8 2
+9 1 8 2 6 7 4 3 5
 ```
-which (r1,c1) means row 1 column 1.
 
 ### Note
 * The input file must end with unix-like EOF '\n'.
 * You can prepare your own problem set like the form in the example directory to check.
-* I compiled a Windows version of minist (NOT under cygwin), so feel free to use.
+* I compiled a Windows version of minisat (NOT under cygwin), so feel free to use.

@@ -29,7 +29,7 @@ instance Show Expr where
   show (Biconditional exp1 exp2) = showBC "↔" exp1 exp2
 
 
-type Substition = [(Var, Expr)]
+type Substitution = [(Var, Expr)]
 
 showBinaryConnective :: (Expr -> String) -> String -> Expr -> Expr -> String
 showBinaryConnective show_ symbol exp1 exp2 =
@@ -70,7 +70,7 @@ depth (Disjunction subExpr1 subExpr2) = 1 + maximum [depth subExpr1, depth subEx
 depth (Conditional subExpr1 subExpr2) = 1 + maximum [depth subExpr1, depth subExpr2]
 depth (Biconditional subExpr1 subExpr2) = 1 + maximum [depth subExpr1, depth subExpr2]
 
-substitute :: Expr -> Substition -> Expr
+substitute :: Expr -> Substitution -> Expr
 substitute expr@(Variable v) sub       = let val = lookup v sub
                                     in case val of (Just expr_) -> expr_
                                                    _            -> expr   

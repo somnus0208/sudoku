@@ -28,12 +28,12 @@ parseOptions args = case args of ["-h"]       -> Help
                                  _            -> Usage
                   
 err :: Int -> String -> IO()
-err 1 _ = hPutStrLn stderr  "ERROR: input file format is invalid"
+err 1 _ = hPutStrLn stderr  "ERROR: internal input file format is invalid"
 err 2 _ = hPutStrLn stderr  "ERROR: file does not exist"
 err 3 s = hPutStrLn stderr ("ERROR: unknown parameter(s): -" ++ s)
 err 4 _ = hPutStrLn stderr  "ERROR: not enough parameter(s)"
 err 5 _ = hPutStrLn stderr  "ERROR: unknown parameter(s): -"
-
+err 6 _ = hPutStrLn stderr  "ERROR: internal output file format is invalid"
 
 
 run :: (String, FilePath) -> IO () 
@@ -49,8 +49,7 @@ run ('s':os,(s:p))   = do { ie <- doesFileExist (s:p)
                               return () 
                             else do 
                                c <- readFromFile (s:p)
-                               case c of Just c' -> (runMSat.toDimacs.genAllCons) c' >>= putStrLn
-                                         _       -> err 1 "" 
+                               run' c
                           ; run (os,(s:p))}
 
 run ('d':os, (s:p))  = do { ie <- doesFileExist (s:p)
@@ -68,4 +67,9 @@ run (c:os, (s:p))    = do
                           err 3 [c]
                           run (os, (s:p))
 
-
+run' :: (Maybe [[Int]]) -> IO ()
+run' (Just c) = do { r <-  (runMSat.toDimacs.genAllCons) c
+                   ; case parseVars r of Just r' -> putStrLn $ prettyPrint r'
+                                         _       -> err 6 ""}
+run' _        = err 1 ""
+  

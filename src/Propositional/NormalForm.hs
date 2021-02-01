@@ -44,7 +44,7 @@ unpackCNF :: Expr -> [Expr]
 unpackCNF (Conjunction e1 e2) = (unpackCNF e1) ++ (unpackCNF e2)
 unpackCNF expr                = [expr] 
 
-toDimacs :: Expr -> (Substition,String)
+toDimacs :: Expr -> (Substitution,String)
 toDimacs expr = let  exprs = unpackCNF expr
                      (subs,exprs_) = rename exprs
                      varNumber   = (length.nub.concat) $ map getVars exprs 
@@ -61,7 +61,7 @@ toDimacs' (Disjunction e1 e2) = case (e1, e2) of (Variable v1,Variable v2) -> sh
                                                  (e1,Variable v2)          ->toDimacs' e1 ++ (' ':show v2)
                                                  (e1,e2)                   ->toDimacs' e1 ++ (' ' : toDimacs' e2)
 
-rename :: [Expr] -> (Substition,[Expr])
+rename :: [Expr] -> (Substitution,[Expr])
 rename exprs = let vars = (nub.concat) [getVars expr | expr <- exprs]
                    new_var_exprs = [var $ show ind| ind<-[1..]]
                    subs = zip vars new_var_exprs 
