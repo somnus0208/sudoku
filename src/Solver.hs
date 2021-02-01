@@ -44,9 +44,9 @@ getVarName :: Int -> Int -> Int -> Var
 getVarName i j k = Var ('(':'r':show i ++","++ 'c':show j ++ "):"++ show k)
 
 prettyPrint :: [(Int, Int, Int)] -> String
-prettyPrint vs = prettyPrint' vs (length vs)
+prettyPrint vs = "(\n" ++ (prettyPrint' vs (length vs)) ++ ")"
 
 prettyPrint' :: [(Int, Int, Int)] -> Int -> String
-prettyPrint' [] _ = "\n"
+prettyPrint' [] _ = ""
 prettyPrint' ((x,y,v):vs) c = let newline = if y * y == c then "\n" else ""
                               in show v ++" " ++ newline ++ (prettyPrint' vs c)
