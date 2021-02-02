@@ -18,7 +18,7 @@ instance Show Options where
                                ++ "\n        -s        print sat result from minisat"
                                ++ "\n        -d        print dimacs for minisat input"
                                ++ "\n"
-        show Usage = "USAGE: sdks -[sd] FILE\n"
+        show Usage = "USAGE: sudoku -[sd] FILE\n"
 
 
 parseOptions :: [String] -> Options
